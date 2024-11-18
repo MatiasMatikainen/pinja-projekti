@@ -3,14 +3,14 @@ import './SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Hae konsulttia..."
-        onChange={(e) => onSearch(e.target.value)}
-        className="search-input"
-      />
-    </div>
+  <div className="search-bar-container">
+    <input
+    type="text"
+    placeholder="Hae konsulttia..."
+    onChange={(e) => onSearch(e.target.value)}
+    className="search-input"
+  />
+</div>
   );
 }
 

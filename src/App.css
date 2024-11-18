@@ -7,6 +7,64 @@
   pointer-events: none;
 }
 
+h2 {
+  margin: 0;
+  padding: 20px 0 10px 0; /* Lisää tilaa ylhäältä otsikon ja hakupalkin väliin */
+}
+
+/* Lomake */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Lisää tilaa kenttien väliin */
+    margin-bottom: 20px; /* Lisää tilaa lomakkeen ja listan väliin */
+}
+
+form input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+.consultant-list {
+  margin-top: 30px;
+  text-align: left;
+  width: 80%; /* Voit säätää leveyttä tarpeen mukaan */
+}
+
+.consultant-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.consultant-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.consultant-list li strong {
+  font-size: 1.2em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
