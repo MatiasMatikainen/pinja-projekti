@@ -19,21 +19,22 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lisää uusi konsultti konsulteihin
-    setConsultants([...consultants, consultant]);
-    // Tyhjennä lomake
+    setConsultants([...consultants, consultant]); // Lisää uusi konsultti
     setConsultant({
       name: '',
       education: '',
       certification: '',
       projectExperience: '',
       workExperience: ''
-    });
+    }); // Tyhjennä lomake
   };
 
   return (
     <div className="App">
       <header className="App-header">
+        {/* Lisää Pinjan logo vasempaan yläkulmaan */}
+        <img src="/Pinja-logo.webp" alt="Pinja Logo" className="logo" />
+        
         <h2>Pinjan osaamisenhallinnan ohjelmisto</h2>
         <SearchBar onSearch={value => console.log(value)} />
         <form onSubmit={handleSubmit}>
@@ -75,17 +76,24 @@ function App() {
           <button type="submit">Tallenna Konsultin Tiedot</button>
         </form>
 
-        {/* Näytetään listan konsultit sivun alaosassa */}
+        {/* Tallennetut konsultit */}
         <div className="consultant-list">
           <h3>Tallennetut konsultit</h3>
           <ul>
             {consultants.map((consultant, index) => (
-              <li key={index}>
-                <strong>{consultant.name}</strong><br />
-                Koulutus: {consultant.education}<br />
-                Sertifikaatit: {consultant.certification}<br />
-                Projektikokemus: {consultant.projectExperience}<br />
-                Työkokemus: {consultant.workExperience}
+              <li key={index} className="consultant-item">
+                <img
+                  src="/picture.jpg"
+                  alt="Consultant"
+                  className="consultant-image"
+                />
+                <div>
+                  <strong>{consultant.name}</strong><br />
+                  Koulutus: {consultant.education}<br />
+                  Sertifikaatit: {consultant.certification}<br />
+                  Projektikokemus: {consultant.projectExperience}<br />
+                  Työkokemus: {consultant.workExperience}
+                </div>
               </li>
             ))}
           </ul>
