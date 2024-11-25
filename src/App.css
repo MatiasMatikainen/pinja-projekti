@@ -1,24 +1,51 @@
+.error-input {
+  border: 2px solid #ca0c0c; /* Punainen reunus virheellisille kentille */
+  color: #ff4d4d; /* Punainen teksti */
+}
+
+.error {
+  color: #333;  
+  background-color: white; 
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 0.85rem;
+}
+
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 100px;
+  height: auto;
+}
+
+.App-header {
+  background-color: #d14c4c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 h2 {
   margin: 0;
-  padding: 20px 0 10px 0; 
+  padding: 20px 0 10px 0;
 }
 
-/* Lomake */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px; 
-    margin-bottom: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 form input {
@@ -44,9 +71,8 @@ form button:hover {
 }
 
 .consultant-list {
-  margin-top: 30px;
+  width: 80%;
   text-align: left;
-  width: 80%; 
 }
 
 .consultant-list ul {
@@ -54,117 +80,39 @@ form button:hover {
   padding: 0;
 }
 
-.consultant-list li {
-  margin-bottom: 10px;
+.consultant-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.consultant-list li strong {
-  font-size: 1.2em;
-}
-
-.consultant-item {
-  display: flex;
-  align-items: center; 
-  margin-bottom: 20px;
-}
-
 .consultant-content {
   display: flex;
-  align-items: center; 
-}
-
-.consultant-image {
-  width: 100px;  /* Voit säätää kuvan kokoa */
-  height: 100px; /* Voit säätää kuvan kokoa */
-  margin-right: 15px; /* Väli kuvan ja tekstin välillä */
-  border-radius: 50%; /* Pyöristetyt reunat, jos haluat kuvan olevan pyöreä */
-}
-
-.consultant-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.consultant-item div {
-  font-size: 20px; 
-}
-
-.logo {
-  position: absolute;  
-  top: 20px;           
-  left: 20px;          
-  width: 100px;       
-  height: auto;       
-}
-
-/* Konsultin tiedot */
-.consultant-item {
-  display: flex;
-  align-items: center; 
-  margin-bottom: 20px;
-}
-
-.consultant-content {
-  display: flex;
-  align-items: center; 
-}
-
-.consultant-image {
-  width: 100px;  
-  height: 100px; 
-  margin-right: 15px; 
-  border-radius: 50%; 
-}
-
-.consultant-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-
-.consultant-item div {
-  font-size: 14px; 
-}
-
-.consultant-item strong {
-  font-size: 16px; 
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #d14c4c;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-grow: 1;
+}
+
+.consultant-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  background-color: #ff4c4c;
   color: white;
-  
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.search-bar-bg {
-  background-color: red;  
-  padding: 10px;  
-  text-align: center;  
+.delete-button:hover {
+  background-color: #e04343;
 }

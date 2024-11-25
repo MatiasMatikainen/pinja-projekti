@@ -11,89 +11,85 @@ function App() {
     workExperience: ''
   });
 
-  const [consultants, setConsultants] = useState([]); // Lista tallennetuista konsulteista
+  const [consultants, setConsultants] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setConsultant({ ...consultant, [e.target.name]: e.target.value });
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: '' });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    Object.keys(consultant).forEach(key => {
+      if (!consultant[key]) {
+        newErrors[key] = true; // Asetetaan virhe true, jos kenttä on tyhjä
+      }
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setConsultants([...consultants, consultant]); // Lisää uusi konsultti
-    setConsultant({
-      name: '',
-      education: '',
-      certification: '',
-      projectExperience: '',
-      workExperience: ''
-    }); // Tyhjennä lomake
+    if (validateForm()) {
+      setConsultants([...consultants, consultant]);
+      setConsultant({
+        name: '',
+        education: '',
+        certification: '',
+        projectExperience: '',
+        workExperience: ''
+      });
+    }
+  };
+
+  const handleDelete = (index) => {
+    const newConsultants = consultants.filter((_, i) => i !== index);
+    setConsultants(newConsultants);
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        {/* Lisää Pinjan logo vasempaan yläkulmaan */}
         <img src="/Pinja-logo.webp" alt="Pinja Logo" className="logo" />
         
         <h2>Pinjan osaamisenhallinnan ohjelmisto</h2>
         <SearchBar onSearch={value => console.log(value)} />
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={consultant.name}
-            onChange={handleChange}
-            placeholder="Konsultin nimi"
-          />
-          <input
-            type="text"
-            name="education"
-            value={consultant.education}
-            onChange={handleChange}
-            placeholder="Koulutustiedot"
-          />
-          <input
-            type="text"
-            name="certification"
-            value={consultant.certification}
-            onChange={handleChange}
-            placeholder="Sertifikaatit"
-          />
-          <input
-            type="text"
-            name="projectExperience"
-            value={consultant.projectExperience}
-            onChange={handleChange}
-            placeholder="Projektikokemus"
-          />
-          <input
-            type="text"
-            name="workExperience"
-            value={consultant.workExperience}
-            onChange={handleChange}
-            placeholder="Työkokemus"
-          />
+          <input type="text" name="name" value={consultant.name} onChange={handleChange}
+                 placeholder={errors.name ? "Konsultin nimi (Pakollinen*)" : "Konsultin nimi"} className={errors.name ? "error-input" : ""} />
+          <input type="text" name="education" value={consultant.education} onChange={handleChange}
+                 placeholder={errors.education ? "Koulutustiedot (Pakollinen*)" : "Koulutustiedot"} className={errors.education ? "error-input" : ""} />
+          <input type="text" name="certification" value={consultant.certification} onChange={handleChange}
+                 placeholder={errors.certification ? "Sertifikaatit (Pakollinen*)" : "Sertifikaatit"} className={errors.certification ? "error-input" : ""} />
+          <input type="text" name="projectExperience" value={consultant.projectExperience} onChange={handleChange}
+                 placeholder={errors.projectExperience ? "Projektikokemus (Pakollinen*)" : "Projektikokemus"} className={errors.projectExperience ? "error-input" : ""} />
+          <input type="text" name="workExperience" value={consultant.workExperience} onChange={handleChange}
+                 placeholder={errors.workExperience ? "Työkokemus (Pakollinen*)" : "Työkokemus"} className={errors.workExperience ? "error-input" : ""} />
           <button type="submit">Tallenna Konsultin Tiedot</button>
         </form>
 
-        {/* Tallennetut konsultit */}
         <div className="consultant-list">
           <h3>Tallennetut konsultit</h3>
           <ul>
             {consultants.map((consultant, index) => (
               <li key={index} className="consultant-item">
-                <img
-                  src="/picture.jpg"
-                  alt="Consultant"
-                  className="consultant-image"
-                />
-                <div>
-                  <strong>{consultant.name}</strong><br />
-                  Koulutus: {consultant.education}<br />
-                  Sertifikaatit: {consultant.certification}<br />
-                  Projektikokemus: {consultant.projectExperience}<br />
-                  Työkokemus: {consultant.workExperience}
+                <div className="consultant-content">
+                  <img src="/picture.jpg" alt="Consultant" className="consultant-image" />
+                  <div>
+                    <strong>{consultant.name}</strong><br />
+                    Koulutus: {consultant.education}<br />
+                    Sertifikaatit: {consultant.certification}<br />
+                    Projektikokemus: {consultant.projectExperience}<br />
+                    Työkokemus: {consultant.workExperience}
+                  </div>
                 </div>
+                <button onClick={() => handleDelete(index)} className="delete-button">
+                  Poista
+                </button>
               </li>
             ))}
           </ul>
