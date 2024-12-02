@@ -1,3 +1,18 @@
+.download-button {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.download-button:hover {
+  background-color: #45a049;
+}
+
 .error-input {
   border: 2px solid #ca0c0c; /* Punainen reunus virheellisille kentille */
   color: #ff4d4d; /* Punainen teksti */
