@@ -80,8 +80,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="/Pinja-logo.webp" alt="Pinja Logo" className="logo" />
-        <h2>Pinjan osaamisenhallinnan ohjelmisto</h2>
+        <h2>Pinja Konsulttihallinta</h2>
 
         <SearchBar onSearch={handleSearch} />
 

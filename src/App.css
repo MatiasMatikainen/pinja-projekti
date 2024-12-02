@@ -32,14 +32,6 @@
   text-align: center;
 }
 
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 100px;
-  height: auto;
-}
-
 .App-header {
   background-color: #d14c4c;
   min-height: 100vh;
