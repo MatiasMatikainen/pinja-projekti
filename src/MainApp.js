@@ -16,6 +16,8 @@ function App() {
   const [consultants, setConsultants] = useState([]);
   const [errors, setErrors] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [isEditing, setIsEditing] = useState(false); // State for editing mode
+  const [editIndex, setEditIndex] = useState(null); // To track which consultant is being edited
   const navigate = useNavigate(); // Declare navigate here
 
   const handleChange = (e) => {
@@ -39,14 +41,16 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setConsultants([...consultants, consultant]);
-      setConsultant({
-        name: '',
-        education: '',
-        certification: '',
-        projectExperience: '',
-        workExperience: ''
-      });
+      if (isEditing) {
+        // Update existing consultant
+        const updatedConsultants = [...consultants];
+        updatedConsultants[editIndex] = consultant;
+        setConsultants(updatedConsultants);
+      } else {
+        // Add new consultant
+        setConsultants([...consultants, consultant]);
+      }
+      resetForm();
     }
   };
 
@@ -82,6 +86,24 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('user'); // Clear user data
     navigate('/'); // Navigate to the login page
+  };
+
+  const resetForm = () => {
+    setConsultant({
+      name: '',
+      education: '',
+      certification: '',
+      projectExperience: '',
+      workExperience: ''
+    });
+    setIsEditing(false);
+    setEditIndex(null);
+  };
+
+  const handleEdit = (index) => {
+    setConsultant(consultants[index]);
+    setIsEditing(true);
+    setEditIndex(index);
   };
 
   return (
@@ -137,7 +159,8 @@ function App() {
             placeholder={errors.workExperience ? "Työkokemus (Pakollinen*)" : "Työkokemus"}
             className={errors.workExperience ? "error-input" : ""}
           />
-          <button type="submit">Tallenna Konsultin Tiedot</button>
+          <button type="submit">{isEditing ? 'Tallenna muutokset' : 'Tallenna Konsultin Tiedot'}</button>
+          {isEditing && <button type="button" onClick={resetForm}>Peruuta</button>} {/* Cancel button */}
         </form>
 
         <div className="consultant-list">
@@ -157,6 +180,10 @@ function App() {
                 </div>
                 <button onClick={() => handleDelete(index)} className="delete-button">
                   Poista
+                </button>
+                {/* Muokkaa-painike on nyt Poista ja Lataa PDF:nä painikkeiden väliin */}
+                <button onClick={() => handleEdit(index)} className="edit-button">
+                  Muokkaa
                 </button>
                 <button onClick={() => generatePDF(consultant)} className="download-button">
                   Lataa CV PDF:nä

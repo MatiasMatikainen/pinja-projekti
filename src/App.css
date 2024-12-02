@@ -140,3 +140,89 @@ form button:hover {
 .delete-button:hover {
   background-color: #e04343;
 }
+
+@media (max-width: 768px) { /* Mobiililaitteet */
+  .App-header {
+    padding: 10px;
+  }
+
+  .consultant-list {
+    font-size: 14px;
+  }
+
+  /* Säädetään painikkeiden koko ja marginaalit mobiilissa */
+  .logout-button,
+  .download-button,
+  .delete-button,
+  .edit-button {
+    width: 100%;
+    margin: 5px 0;  /* Väli painikkeiden välillä */
+    padding: 10px;
+    font-size: 14px; /* Pienempi fonttikoko */
+  }
+
+  /* Säilytetään värit ja taustat mobiililaitteissa */
+  .logout-button {
+    background-color: #f44336;
+    color: white;
+  }
+  .download-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .delete-button {
+    background-color: #ff9800;
+    color: white;
+  }
+  .edit-button {
+    background-color: #2196F3;
+    color: white;
+  }
+
+  /* Konsulttien listan asettelu mobiilissa */
+  .consultant-item {
+    display: block;  /* Asetetaan painikkeet vertikaalisesti */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .consultant-content {
+    display: block;
+    text-align: left;
+  }
+
+  /* Kuvan pienentäminen mobiiliversiossa */
+  .consultant-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+}
+
+/* Normaalit tyylit suuremmille näytöille */
+@media (min-width: 769px) {
+  .logout-button,
+  .download-button,
+  .delete-button,
+  .edit-button {
+    width: auto;
+    margin: 0 5px;
+    padding: 12px;
+  }
+
+  .consultant-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .consultant-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .consultant-image {
+    width: 80px;
+    height: 80px;
+  }
+}
